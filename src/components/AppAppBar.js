@@ -13,10 +13,18 @@ import Drawer from '@mui/material/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
 import ToggleColorMode from './ToggleColorMode';
 
+import { useTheme } from '@mui/material/styles';
+
+import logoLight from './minutebots-logo-red.svg';
+import logoDark from './minutebots-logo-white.svg';
+
 const logoStyle = {
-  width: '140px',
-  height: 'auto',
-  cursor: 'pointer',
+    position: 'absolute',
+    top: '-6px',
+    left: '10px',
+    width: 'auto',
+    height: '80px',
+    cursor: 'pointer',
 };
 
 function AppAppBar({ mode, toggleColorMode }) {
@@ -26,6 +34,7 @@ function AppAppBar({ mode, toggleColorMode }) {
     setOpen(newOpen);
   };
 
+    const theme = useTheme();
     /*
   const scrollToSection = (sectionId) => {
     const sectionElement = document.getElementById(sectionId);
@@ -86,11 +95,9 @@ function AppAppBar({ mode, toggleColorMode }) {
               }}
             >
               <img
-                src={
-                  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
-                }
-                style={logoStyle}
-                alt="logo of sitemark"
+                  src={theme.palette.mode === 'light' ? logoLight : logoDark}
+                  style={logoStyle}
+                  alt="MinuteBots logo"
               />
               <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
               </Box>
