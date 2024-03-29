@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ToggleButton from '@mui/material/ToggleButton';
@@ -11,6 +12,9 @@ import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 import AppAppBar from './components/AppAppBar';
 import Footer from './components/Footer';
 import getLPTheme from './getLPTheme';
+import { Outlet } from 'react-router-dom';
+
+import PageTop from './components/PageTop';
 
 function ToggleCustomTheme({ showCustomTheme, toggleCustomTheme }) {
   return (
@@ -73,12 +77,16 @@ export default function LandingPage() {
 
   return (
     <ThemeProvider theme={showCustomTheme ? LPtheme : defaultTheme}>
-      <CssBaseline />
-      <AppAppBar mode={mode} toggleColorMode={toggleColorMode} />
-      <Box sx={{ bgcolor: 'background.default' }}>
-        <Divider />
-        <Footer />
-      </Box>
+        <CssBaseline />
+        <AppAppBar mode={mode} toggleColorMode={toggleColorMode} />
+        <PageTop />
+        <Box sx={{ bgcolor: 'background.default' }}>
+            <Container sx={{ py: { xs: 4, sm: 4 } }}>
+                <Outlet sx={{ alignSelf: 'center' }} />
+            </Container>
+            <Divider />
+            <Footer />
+        </Box>
         { /* <ToggleCustomTheme
         showCustomTheme={showCustomTheme}
         toggleCustomTheme={toggleCustomTheme}
