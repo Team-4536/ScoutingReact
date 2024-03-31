@@ -4,10 +4,41 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Unstable_Grid2';
 import Select from '@mui/material/Select';
+import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 
 import ConfigContext from '../config.js';
+
+const ScoutingSelect = ({ field }) => {
+    let entries = Object.entries(field.choices);
+
+    const [choice, setChoice] = React.useState('');
+
+    const handleChange = (event) => {
+        console.log(event);
+        setChoice(event.target.value);
+    };
+
+    return (
+        <FormControl sx={{width: "100%", mt: 1}}>
+            <InputLabel id="demo-simple-select-label">{field.title}</InputLabel>
+            <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                label={field.title}
+                value={choice}
+                onChange={handleChange}
+            >
+                {
+                    Object.entries(field.choices).map(
+                        (kv) => (<MenuItem key={kv[0]} value={kv[0]}>{kv[1]}</MenuItem>)
+                    )
+                }
+            </Select>
+        </FormControl>
+    )
+}
 
 export default function Sections() {
     const config = React.useContext(ConfigContext);
@@ -29,23 +60,8 @@ export default function Sections() {
                             case "boolean":
                                 return <div>a boolean field {f.title}</div>
                             case "select":
-                                let entries = Object.entries(f.choices);
                                 return (
-                                    <>
-                                    <InputLabel id="demo-simple-select-label">{f.title}</InputLabel>
-                                    <Select
-                                        labelId="demo-simple-select-label"
-                                        id="demo-simple-select"
-                                        label={entries[0][1]}
-                                        value={entries[0][0]}
-                                    >
-                                        {
-                                            Object.entries(f.choices).map(
-                                                (kv) => (<MenuItem value={kv[0]}>{kv[1]}</MenuItem>)
-                                            )
-                                        }
-                                    </Select>
-                                    </>
+                                    <ScoutingSelect field={f} />
                                 )
                             default:
                                 return <div>a {f.type} field {f.title}</div>
