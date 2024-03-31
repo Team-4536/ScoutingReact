@@ -12,6 +12,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Drawer from '@mui/material/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
 import ToggleColorMode from './ToggleColorMode';
+import Typography from '@mui/material/Typography';
 
 import { useTheme } from '@mui/material/styles';
 
@@ -19,8 +20,8 @@ import logoLight from './minutebots-logo-red.svg';
 import logoDark from './minutebots-logo-white.svg';
 
 const logoStyle = {
-    position: 'absolute',
-    top: '-6px',
+    position: 'relative',
+    top: '-1px',
     left: '10px',
     width: 'auto',
     height: '80px',
@@ -99,8 +100,15 @@ function AppAppBar({ mode, toggleColorMode }) {
                   style={logoStyle}
                   alt="MinuteBots logo"
               />
-              <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-              </Box>
+                <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                    <MenuItem
+                        sx={{ py: '6px', marginLeft: 4, px: 1 }}
+                    >
+                        <Typography variant="body2" color="text.primary">
+                            MenuItem
+                        </Typography>
+                    </MenuItem>
+                </Box>
             </Box>
             <Box
               sx={{

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -13,6 +15,8 @@ import AppAppBar from './components/AppAppBar';
 import Footer from './components/Footer';
 import getLPTheme from './getLPTheme';
 import { Outlet } from 'react-router-dom';
+
+import Sections from './components/sections.js';
 
 import PageTop from './components/PageTop';
 
@@ -82,10 +86,14 @@ export default function LandingPage() {
         <PageTop />
         <Box sx={{ bgcolor: 'background.default' }}>
             <Container sx={{ py: { xs: 4, sm: 4 } }}>
-                <Outlet sx={{ alignSelf: 'center' }} />
+                <Box sx={{ alignSelf: 'center' }} >
+                    <Sections />
+                </Box>
+                <Divider />
+                <Footer />
+                <Button sx={{alignSelf: 'center'}}>Share</Button>
+                <Dialog open={false}>Put QR Code here</Dialog>
             </Container>
-            <Divider />
-            <Footer />
         </Box>
         { /* <ToggleCustomTheme
         showCustomTheme={showCustomTheme}

@@ -23,7 +23,7 @@ export default function PageTop() {
                     flexDirection: 'column',
                     alignItems: 'center',
                     pt: { xs: 10, sm: 12 },
-                    pb: { xs: 1, sm: 1 },
+                    pb: { xs: 4, sm: 4 },
                 }}
             >
             </Container>
